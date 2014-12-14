@@ -126,4 +126,4 @@ switch (true) do
 			_vehicle addMagazineTurret [_x, _path];
 		};
 	} forEach (_vehicle magazinesTurret _path);
-} forEach ([[-1]] + allTurrets [_vehicle, false]);
+} forEach ([[-1]] + ([_vehicle, []] call BIS_fnc_getTurrets));

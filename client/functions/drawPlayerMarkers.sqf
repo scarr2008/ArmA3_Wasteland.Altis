@@ -6,7 +6,7 @@
 
 if (!hasInterface) exitWith {};
 
-#define IS_FRIENDLY_PLAYER(UNIT) (isPlayer UNIT && {(group UNIT == group player || (!_isIndie && side group UNIT == playerSide))})
+#define IS_FRIENDLY_PLAYER(UNIT) (isPlayer UNIT && {isNil "HeadlessClient" || {UNIT != HeadlessClient}} && {(group UNIT == group player || (!_isIndie && side group UNIT == playerSide))})
 #define DEFAULT_ICON_POS(UNIT) (UNIT modelToWorld (UNIT selectionPosition "spine3"))
 
 if (isNil "showPlayerNames") then { showPlayerNames = false };

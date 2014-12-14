@@ -14,4 +14,9 @@ _players = [];
 ADD_IF_PLAYER forEach playableUnits;
 ADD_IF_PLAYER forEach allDeadMen;
 
+if (!isNil "HeadlessClient") then
+{
+	_players = _players - [HeadlessClient];
+};
+
 _players

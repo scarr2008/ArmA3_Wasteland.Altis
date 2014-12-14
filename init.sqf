@@ -53,7 +53,7 @@ if (!isDedicated) then
 		else // Headless
 		{
 			waitUntil {!isNull player};
-			if (typeOf player == "HeadlessClient_F") then
+			if (!isNil "HeadlessClient" && {player == HeadlessClient}) then
 			{
 				execVM "client\headless\init.sqf";
 			};

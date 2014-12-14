@@ -50,7 +50,7 @@ if (isNil {missionNamespace getVariable _compileKey}) then
 		["notifyAdminMenu", _assignChecksum, "server\antihack\notifyAdminMenu.sqf"]
 	];
 
-	if (isServer) then
+	/*if (isServer) then
 	{
 		[] spawn compile (_assignChecksum + (preprocessFileLineNumbers "server\antihack\serverSide.sqf"));
 	};
@@ -58,7 +58,7 @@ if (isNil {missionNamespace getVariable _compileKey}) then
 	if (!isDedicated) then
 	{
 		[] spawn compile (_assignChecksum + (preprocessFileLineNumbers "server\antihack\payload.sqf"));
-	};
+	};*/
 
 	missionNamespace setVariable [_compileKey, compileFinal "true"];
 };

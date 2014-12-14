@@ -91,7 +91,7 @@ _turretMags2 = [];
 _turretMags3 = [];
 _hasDoorGuns = isClass (configFile >> "CfgVehicles" >> _class >> "Turrets" >> "RightDoorGun");
 
-_turrets = allTurrets [_veh, false];
+_turrets = [_veh, []] call BIS_fnc_getTurrets;
 
 if !(_class isKindOf "B_Heli_Transport_03_unarmed_F") then
 {

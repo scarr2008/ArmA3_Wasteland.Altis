@@ -38,17 +38,20 @@ switch (_side) do
 			{
 				if (_item == "uniform") then { _result = "U_B_Ghilliesuit" };
 				if (_item == "vest") then { _result = _defaultVest };
+				if (_item == "backpack") then { _result = "B_AssaultPack_rgr" };
 			};
 			case (_isDiver):
 			{
 				if (_item == "uniform") then { _result = "U_B_Wetsuit" };
 				if (_item == "vest") then { _result = "V_RebreatherB" };
 				if (_item == "goggles") then { _result = "G_Diving" };
+				if (_item == "backpack") then { _result = "B_AssaultPack_rgr" };
 			};
 			default
 			{
 				if (_item == "uniform") then { _result = "U_B_CombatUniform_mcam" };
 				if (_item == "vest") then { _result = _defaultVest };
+				if (_item == "backpack") then { _result = "B_AssaultPack_rgr" };
 			};
 		};
 
@@ -62,17 +65,20 @@ switch (_side) do
 			{
 				if (_item == "uniform") then { _result = "U_O_Ghilliesuit" };
 				if (_item == "vest") then { _result = _defaultVest };
+				if (_item == "backpack") then { _result = "O_AssaultPack_rgr" };
 			};
 			case (_isDiver):
 			{
 				if (_item == "uniform") then { _result = "U_O_Wetsuit" };
 				if (_item == "vest") then { _result = "V_RebreatherIR" };
 				if (_item == "goggles") then { _result = "G_Diving" };
+				if (_item == "backpack") then { _result = "O_AssaultPack_rgr" };
 			};
 			default
 			{
 				if (_item == "uniform") then { _result = "U_O_CombatUniform_ocamo" };
 				if (_item == "vest") then { _result = _defaultVest };
+				if (_item == "backpack") then { _result = "O_AssaultPack_rgr" };
 			};
 		};
 
@@ -86,17 +92,20 @@ switch (_side) do
 			{
 				if (_item == "uniform") then { _result = "U_I_Ghilliesuit" };
 				if (_item == "vest") then { _result = _defaultVest };
+				if (_item == "backpack") then { _result = "I_AssaultPack_rgr" };
 			};
 			case (_isDiver):
 			{
 				if (_item == "uniform") then { _result = "U_I_Wetsuit" };
 				if (_item == "vest") then { _result = "V_RebreatherIA" };
 				if (_item == "goggles") then { _result = "G_Diving" };
+				if (_item == "backpack") then { _result = "I_AssaultPack_rgr" };
 			};
 			default
 			{
 				if (_item == "uniform") then { _result = "U_I_CombatUniform" };
 				if (_item == "vest") then { _result = _defaultVest };
+				if (_item == "backpack") then { _result = "I_AssaultPack_rgr" };
 			};
 		};
 

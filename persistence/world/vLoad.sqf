@@ -80,7 +80,17 @@ if (!isNil "_exists" && {_exists}) then
 					_veh setVariable ["A3W_objectTextures", _objTextures, true];
 				};
 
-				{ _veh setVariable [_x select 0, _x select 1] } forEach _variables;
+				{
+					_var = _x select 0;
+					_value = _x select 1;
+					
+					//Add action to loaded vehicle
+					switch (_var) do {
+						case "vehicleLocked": {_veh lock _value};
+					};
+					
+					_veh setVariable [_var, _value, true] 
+				} forEach _variables;
 
 				clearWeaponCargoGlobal _veh;
 				clearMagazineCargoGlobal _veh;
@@ -112,6 +122,12 @@ if (!isNil "_exists" && {_exists}) then
 							_veh addBackpackCargoGlobal _x;
 						};
 					} forEach _backpacks;
+				};
+				
+				//AddAi to vehicle
+				if (getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "isUav") > 0) then
+				{
+					createVehicleCrew _veh;
 				};
 
 				_turretMags = [_vehFileName, _vehName, "TurretMagazines", "ARRAY"] call PDB_read; // iniDB_read

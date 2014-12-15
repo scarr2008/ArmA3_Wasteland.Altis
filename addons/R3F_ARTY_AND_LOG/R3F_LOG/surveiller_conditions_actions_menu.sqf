@@ -45,7 +45,10 @@ while {true} do
 		{
 			// Condition action deplacer_objet
 			R3F_LOG_action_deplacer_objet_valide =
-				count crew _objet_pointe == 0 &&
+				(count crew _objet_pointe == 0 ||
+				{getText (configFile >> "CfgVehicles" >> typeOf _objet_pointe >> "crew") == "B_UAV_AI"}||
+				{getText (configFile >> "CfgVehicles" >> typeOf _objet_pointe >> "crew") == "O_UAV_AI"}||
+				{getText (configFile >> "CfgVehicles" >> typeOf _objet_pointe >> "crew") == "I_UAV_AI"})&&
 				isNull R3F_LOG_joueur_deplace_objet &&
 				{!alive (_objet_pointe getVariable "R3F_LOG_est_deplace_par")} &&
 				{isNull (_objet_pointe getVariable "R3F_LOG_est_transporte_par")} &&
@@ -108,7 +111,10 @@ while {true} do
 			{
 				// Condition action charger_deplace
 				R3F_LOG_action_charger_deplace_valide =
-					count crew _objet_pointe == 0 &&
+					(count crew _objet_pointe == 0 ||
+				{getText (configFile >> "CfgVehicles" >> typeOf _objet_pointe >> "crew") == "B_UAV_AI"}||
+				{getText (configFile >> "CfgVehicles" >> typeOf _objet_pointe >> "crew") == "O_UAV_AI"}||
+				{getText (configFile >> "CfgVehicles" >> typeOf _objet_pointe >> "crew") == "I_UAV_AI"})&&
 					R3F_LOG_joueur_deplace_objet == _objet_pointe &&
 					{{
 						alive _x &&
@@ -122,7 +128,10 @@ while {true} do
 
 			// Condition action selectionner_objet_charge
 			R3F_LOG_action_selectionner_objet_charge_valide =
-				count crew _objet_pointe == 0 &&
+				(count crew _objet_pointe == 0 ||
+				{getText (configFile >> "CfgVehicles" >> typeOf _objet_pointe >> "crew") == "B_UAV_AI"}||
+				{getText (configFile >> "CfgVehicles" >> typeOf _objet_pointe >> "crew") == "O_UAV_AI"}||
+				{getText (configFile >> "CfgVehicles" >> typeOf _objet_pointe >> "crew") == "I_UAV_AI"})&&
 				isNull R3F_LOG_joueur_deplace_objet &&
 				{isNull (_objet_pointe getVariable "R3F_LOG_est_transporte_par")} &&
 				{!alive (_objet_pointe getVariable "R3F_LOG_est_deplace_par")} &&

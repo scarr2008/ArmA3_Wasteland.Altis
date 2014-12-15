@@ -31,6 +31,7 @@ A3W_scriptThreads = [];
 [] execVM "config.sqf";
 [] execVM "storeConfig.sqf"; // Separated as its now v large
 [] execVM "briefing.sqf";
+[] execVM "addons\atm\bank_init.sqf";
 
 if (!isDedicated) then
 {
@@ -62,3 +63,5 @@ if (isServer) then
 [] execVM "addons\proving_ground\init.sqf";
 [] execVM "addons\scripts\DynamicWeatherEffects.sqf";
 [] execVM "addons\JumpMF\init.sqf";
+[] execVM "addons\zlt_fastrope\zlt_fastrope.sqf";
+[] execVM "addons\earplug\earplugInit.sqf";

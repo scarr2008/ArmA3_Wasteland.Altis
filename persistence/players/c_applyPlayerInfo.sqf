@@ -19,6 +19,6 @@ _data = _this;
 	switch (_name) do
 	{
 		case "Donator": { player setVariable ["isDonator", _value > 0] };
-		//case "BankMoney": { player setVariable ["bmoney", _value max 0] }; // Not implemented in vanilla mission
+		case "BankMoney": { player setVariable ["bmoney", _value max 0] }; // Not implemented in vanilla mission
 	};
 } forEach _data;

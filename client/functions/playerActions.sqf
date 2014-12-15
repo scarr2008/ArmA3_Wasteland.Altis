@@ -8,6 +8,10 @@
 
 { [player, _x] call fn_addManagedAction } forEach
 [
+
+	["<img image='client\icons\r3f_lock.paa'/> Lock Vehicle", "client\lockSystem\vehicle_lock.sqf", [], 1,false,false,"","[cursorTarget] call canVehicleLock"],
+	["<img image='client\icons\r3f_unlock.paa'/> Unlock Vehicle", "client\lockSystem\vehicle_unlock.sqf", [], 1,false,false,"","[cursorTarget] call canVehicleUnlock"],
+
 	["Holster Weapon", { player action ["SwitchWeapon", player, player, 100] }, [], -11, false, false, "", "vehicle player == player && currentWeapon player != ''"],
 	["Unholster Primary Weapon", { player action ["SwitchWeapon", player, player, 0] }, [], -11, false, false, "", "vehicle player == player && currentWeapon player == '' && primaryWeapon player != ''"],
 

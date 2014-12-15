@@ -13,11 +13,32 @@ _uniform = [_player, "uniform"] call getDefaultClothing;
 _vest = [_player, "vest"] call getDefaultClothing;
 _headgear = [_player, "headgear"] call getDefaultClothing;
 _goggles = [_player, "goggles"] call getDefaultClothing;
+_backpack = [_player, "backpack"] call getDefaultClothing;
+
+//Load custom gear
+{
+	_uid = _x select 0;
+	_type = _x select 1;
+	_class = _x select 2;
+
+	if (getPlayerUID _player == _uid) then{
+		switch (_type) do {
+			case "uniform": {_uniform = _class};
+			case "vest": {_vest = _class};
+			case "headgear": {_headgear = _class};
+			case "goggles": {_goggles = _class};
+			case "backpack": {_backpack = _class};
+		};
+		
+	};
+
+} forEach customGearArray;
 
 if (_uniform != "") then { _player addUniform _uniform };
 if (_vest != "") then { _player addVest _vest };
 if (_headgear != "") then { _player addHeadgear _headgear };
 if (_goggles != "") then { _player addGoggles _goggles };
+if (_backpack != "") then { _player addBackpack _backpack };
 
 sleep 0.1;
 

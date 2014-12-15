@@ -211,6 +211,36 @@ storePurchaseHandle = _this spawn
 
 						_requestKey = call A3W_fnc_generateKey;
 						call requestStoreObject;
+												
+						_object = objectFromNetId (missionNamespace getVariable _requestKey);	
+						
+						// If UAV or UGV, fill vehicle with UAV AI, give UAV terminal to our player, and connect it to the vehicle
+						if ({_object isKindOf _x} count (call uavArray) > 0) then
+						{
+							_uavTerminal = "I_UavTerminal";
+							switch (side player) do
+							{
+								case BLUFOR: { _uavTerminal = "B_UavTerminal" };
+								case OPFOR:	 { _uavTerminal = "O_UavTerminal" };
+								default	     { _uavTerminal = "I_UavTerminal" };
+							};
+
+							if !(_uavTerminal in assignedItems player) then
+							{
+								{ player unassignItem _x } forEach ["ItemGPS", "B_UavTerminal", "O_UavTerminal", "I_UavTerminal"]; // Unassign any GPS slot item
+								
+								if (_uavTerminal in items player) then
+								{
+									player assignItem _uavTerminal;
+								}
+								else
+								{
+									player linkItem _uavTerminal;
+								};
+							};
+
+							player connectTerminalToUav _object;
+						};
 					};
 				} forEach (call staticGunsArray);
 			};

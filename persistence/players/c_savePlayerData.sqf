@@ -29,8 +29,8 @@ savePlayerHandle = _this spawn
 			["UID", _UID],
 			["Name", name player],
 			["LastGroupSide", str side group player],
-			["LastPlayerSide", str playerSide]/*,
-			["BankMoney", player getVariable ["bmoney", 0]]*/ // Not implemented in vanilla mission
+			["LastPlayerSide", str playerSide],
+			["BankMoney", player getVariable ["bmoney", 0]] // Not implemented in vanilla mission
 		];
 
 		_hitPoints = [];

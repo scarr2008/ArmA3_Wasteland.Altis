@@ -299,6 +299,21 @@ while {true} do
 					{
 						_variables pushBack ["ownerUID", _owner];
 					};
+					
+					//Saving locked state
+					
+					_r3fSide = _veh getVariable "R3F_Side";
+
+					if (!isNil "_r3fSide") then
+					{
+						_variables pushBack ["R3F_Side", _r3fSide];
+					};
+					
+					_lockedState = _veh getVariable ["vehicleLocked",0];
+					if (_lockedState>0) then
+					{
+						_variables pushBack ["vehicleLocked", _lockedState];
+					};
 
 					switch (true) do
 					{

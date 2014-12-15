@@ -70,7 +70,10 @@ class Mission
 		"A3_Modules_F_Sites",
 		"a3_characters_f_beta",
 		"a3_characters_f_gamma",
-		"a3_characters_f"
+		"a3_characters_f",
+		"A3_Structures_F_EPC_Civ_Accessories",
+		"A3_Soft_F_EPC_Truck_03",
+		"A3_Soft_F_Gamma_HEMTT"
 	};
 	addOnsAuto[]=
 	{
@@ -85,13 +88,16 @@ class Mission
 		"A3_Structures_F_Households_Slum",
 		"A3_Structures_F_Civ_Market",
 		"A3_Structures_F_Civ_Camping",
+		"A3_Structures_F_EPC_Civ_Accessories",
+		"A3_Soft_F_EPC_Truck_03",
+		"A3_Soft_F_Gamma_HEMTT",
 		"a3_map_altis"
 	};
 	randomSeed=14957468;
 	class Intel
 	{
-		briefingName="A3Wasteland Altis v1.0b"; // it would be great if you could keep "A3" in the name, like "ABC A3Wasteland" instead of "ABC Wasteland" :)
-		overviewText="Wasteland survival sandbox by Team Wasteland - visit A3Wasteland.com for more details";
+		briefingName="A3Wasteland Altis MERCS GAMERS v1.0";
+		overviewText="Wasteland survival sandbox by MERCS GAMERS - visit mercsgamers.com for more details. Teamspeak: 104.236.58.214";
 		resistanceWest=0;
 		startWeather=0.10000001;
 		startWind=0.30000001;
@@ -2048,7 +2054,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=24;
+		items=44;
 		class Item0
 		{
 			position[]={5892.3325,225.05762,20124.521};
@@ -2311,10 +2317,284 @@ class Mission
 			init="[this, true] call A3W_fnc_setupMissionObject";
 			description="DO NOT MODIFY IN EDITOR";
 		};
+		class Item24
+		{
+			position[]={14493.427,18.768429,16383.834};
+			azimut=-176.547;
+			id=183;
+			side="EMPTY";
+			vehicle="Land_Atm_01_F";
+			skill=0.60000002;
+			text="ATM";
+			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+		};
+		class Item25
+		{
+			position[]={25618.711,20.870693,21353.164};
+			azimut=137.07899;
+			offsetY=0.25;
+			id=184;
+			side="EMPTY";
+			vehicle="Land_Atm_02_F";
+			skill=0.60000002;
+			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+		};
+		class Item26
+		{
+			position[]={16774.574,18.399603,12594.58};
+			azimut=269.349;
+			id=185;
+			side="EMPTY";
+			vehicle="Land_Atm_02_F";
+			skill=0.60000002;
+			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+		};
+		class Item27
+		{
+			position[]={9507.4092,118.30904,15937.541};
+			azimut=1.3209668;
+			offsetY=0.25;
+			id=186;
+			side="EMPTY";
+			vehicle="Land_Atm_02_F";
+			skill=0.60000002;
+			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+		};
+		class Item28
+		{
+			position[]={3574.9214,11.521288,12800.586};
+			azimut=303.048;
+			offsetY=0.25;
+			id=187;
+			side="EMPTY";
+			vehicle="Land_Atm_02_F";
+			skill=0.60000002;
+			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+		};
+		class Item29
+		{
+			position[]={21647.395,14.039072,7676.2559};
+			azimut=230.96605;
+			id=188;
+			side="EMPTY";
+			vehicle="Land_Atm_02_F";
+			skill=0.60000002;
+			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+		};
+		class Item30
+		{
+			position[]={11866.427,16.354881,9441.4248};
+			azimut=30.279499;
+			special="NONE";
+			id=189;
+			side="EMPTY";
+			vehicle="O_Truck_03_ammo_F";
+			leader=1;
+			lock="LOCKED";
+			skill=0.60000002;
+			text="Service_Truck_2";
+			init="this call A3W_fnc_setupResupplyTruck";
+			description="Service";
+		};
+		class Item31
+		{
+			position[]={4952.3135,16.147003,14393.723};
+			azimut=96.126503;
+			special="NONE";
+			id=190;
+			side="EMPTY";
+			vehicle="O_Truck_03_ammo_F";
+			leader=1;
+			lock="LOCKED";
+			skill=0.60000002;
+			text="Service_Truck_1";
+			init="this call A3W_fnc_setupResupplyTruck";
+			description="Service";
+		};
+		class Item32
+		{
+			position[]={14661.954,17.912905,16146.968};
+			azimut=30.279499;
+			special="NONE";
+			id=191;
+			side="EMPTY";
+			vehicle="O_Truck_03_ammo_F";
+			leader=1;
+			lock="LOCKED";
+			skill=0.60000002;
+			text="Service_Truck_3";
+			init="this call A3W_fnc_setupResupplyTruck";
+			description="Service";
+		};
+		class Item33
+		{
+			position[]={23052.475,3.1900001,18980.561};
+			azimut=30.279499;
+			special="NONE";
+			id=192;
+			side="EMPTY";
+			vehicle="O_Truck_03_ammo_F";
+			leader=1;
+			lock="LOCKED";
+			skill=0.60000002;
+			text="Service_Truck_4";
+			init="this call A3W_fnc_setupResupplyTruck";
+			description="Service";
+		};
+		class Item34
+		{
+			position[]={26844.871,21.499193,24680.629};
+			azimut=69.169502;
+			special="NONE";
+			id=193;
+			side="EMPTY";
+			vehicle="O_Truck_03_ammo_F";
+			leader=1;
+			lock="LOCKED";
+			skill=0.60000002;
+			text="Service_Truck_5";
+			init="this call A3W_fnc_setupResupplyTruck";
+			description="Service";
+		};
+		class Item35
+		{
+			position[]={21018.467,24.164013,7235.9766};
+			azimut=-47.026901;
+			special="NONE";
+			id=194;
+			side="EMPTY";
+			vehicle="O_Truck_03_ammo_F";
+			leader=1;
+			lock="LOCKED";
+			skill=0.60000002;
+			text="Service_Truck_6";
+			init="this call A3W_fnc_setupResupplyTruck";
+			description="Service";
+		};
+		class Item36
+		{
+			position[]={20916.25,27.757748,6905.2417};
+			azimut=-47.8661;
+			special="NONE";
+			id=195;
+			side="EMPTY";
+			vehicle="B_Truck_01_box_F";
+			leader=1;
+			lock="LOCKED";
+			skill=0.60000002;
+			text="Sell_Truck_6";
+			init="this call A3W_fnc_setupSellTruck";
+			description="Sell Vehicle";
+		};
+		class Item37
+		{
+			position[]={16909.143,11.681079,13114.839};
+			azimut=-47.8661;
+			special="NONE";
+			id=196;
+			side="EMPTY";
+			vehicle="B_Truck_01_box_F";
+			leader=1;
+			lock="LOCKED";
+			skill=0.60000002;
+			text="Sell_Truck_1";
+			init="this call A3W_fnc_setupSellTruck";
+			description="Sell Vehicle";
+		};
+		class Item38
+		{
+			position[]={22849.334,6.5564084,17190.305};
+			azimut=-47.8661;
+			special="NONE";
+			id=197;
+			side="EMPTY";
+			vehicle="B_Truck_01_box_F";
+			leader=1;
+			lock="LOCKED";
+			skill=0.60000002;
+			text="Sell_Truck_2";
+			init="this call A3W_fnc_setupSellTruck";
+			description="Sell Vehicle";
+		};
+		class Item39
+		{
+			position[]={25756.232,29.208359,21718.395};
+			azimut=-47.8661;
+			special="NONE";
+			id=198;
+			side="EMPTY";
+			vehicle="B_Truck_01_box_F";
+			leader=1;
+			lock="LOCKED";
+			skill=0.60000002;
+			text="Sell_Truck_3";
+			init="this call A3W_fnc_setupSellTruck";
+			description="Sell Vehicle";
+		};
+		class Item40
+		{
+			position[]={15362.866,18.057646,16812.561};
+			azimut=-47.8661;
+			special="NONE";
+			id=199;
+			side="EMPTY";
+			vehicle="B_Truck_01_box_F";
+			leader=1;
+			lock="LOCKED";
+			skill=0.60000002;
+			text="Sell_Truck_4";
+			init="this call A3W_fnc_setupSellTruck";
+			description="Sell Vehicle";
+		};
+		class Item41
+		{
+			position[]={9520.3477,127.71786,15131.872};
+			azimut=-47.8661;
+			special="NONE";
+			id=200;
+			side="EMPTY";
+			vehicle="B_Truck_01_box_F";
+			leader=1;
+			lock="LOCKED";
+			skill=0.60000002;
+			text="Sell_Truck_5";
+			init="this call A3W_fnc_setupSellTruck";
+			description="Sell Vehicle";
+		};
+		class Item42
+		{
+			position[]={3727.124,27.162212,12208.576};
+			azimut=-47.8661;
+			special="NONE";
+			id=201;
+			side="EMPTY";
+			vehicle="B_Truck_01_box_F";
+			leader=1;
+			lock="LOCKED";
+			skill=0.60000002;
+			text="Sell_Truck_7";
+			init="this call A3W_fnc_setupSellTruck";
+			description="Sell Vehicle";
+		};
+		class Item43
+		{
+			position[]={5164.3037,240.02509,21031.781};
+			azimut=-47.8661;
+			special="NONE";
+			id=202;
+			side="EMPTY";
+			vehicle="B_Truck_01_box_F";
+			leader=1;
+			lock="LOCKED";
+			skill=0.60000002;
+			text="Sell_Truck_8";
+			init="this call A3W_fnc_setupSellTruck";
+			description="Sell Vehicle";
+		};
 	};
 	class Markers
 	{
-		items=178;
+		items=198;
 		class Item0
 		{
 			position[]={3612.1487,12.11851,13020.892};
@@ -3680,6 +3960,180 @@ class Mission
 			name="VehStore5_seaSpawn";
 			type="Empty";
 			colorName="ColorBlack";
+		};
+		class Item178
+		{
+			position[]={16777.195,18.574501,12596.221};
+			name="ATM";
+			text="ATM";
+			type="mil_box";
+			colorName="ColorOrange";
+			a=0.30000001;
+			b=0.30000001;
+		};
+		class Item179
+		{
+			position[]={14493.533,18.760967,16384.199};
+			name="ATM_1";
+			text="ATM";
+			type="mil_box";
+			colorName="ColorOrange";
+			a=0.30000001;
+			b=0.30000001;
+		};
+		class Item180
+		{
+			position[]={9508.8721,118.21552,15937.799};
+			name="ATM_1_1";
+			text="ATM";
+			type="mil_box";
+			colorName="ColorOrange";
+			a=0.30000001;
+			b=0.30000001;
+			angle=-1.1615601;
+		};
+		class Item181
+		{
+			position[]={3575.1128,11.534128,12800.33};
+			name="ATM_1_1_1";
+			text="ATM";
+			type="mil_box";
+			colorName="ColorOrange";
+			a=0.30000001;
+			b=0.30000001;
+		};
+		class Item182
+		{
+			position[]={25617.258,20.83415,21355.928};
+			name="ATM_1_1_2";
+			text="ATM";
+			type="mil_box";
+			colorName="ColorOrange";
+			a=0.30000001;
+			b=0.30000001;
+		};
+		class Item183
+		{
+			position[]={21649.664,13.999023,7678.3652};
+			name="ATM_2";
+			text="ATM";
+			type="mil_box";
+			colorName="ColorOrange";
+			a=0.30000001;
+			b=0.30000001;
+			angle=-38.382946;
+		};
+		class Item184
+		{
+			position[]={11874.09,16.196585,9440.4307};
+			name="Service_Truck_2";
+			text="Service_Truck_2";
+			type="Empty";
+			colorName="ColorYellow";
+		};
+		class Item185
+		{
+			position[]={4960.4102,16.076021,14392.523};
+			name="Service_Truck_1";
+			text="Service_Truck_1";
+			type="Empty";
+			colorName="ColorYellow";
+		};
+		class Item186
+		{
+			position[]={14668.817,17.91,16145.937};
+			name="Service_Truck_3";
+			text="Service_Truck_3";
+			type="Empty";
+			colorName="ColorYellow";
+		};
+		class Item187
+		{
+			position[]={23061.527,3.1900001,18980.918};
+			name="Service_Truck_4";
+			text="Service_Truck_4";
+			type="Empty";
+			colorName="ColorYellow";
+		};
+		class Item188
+		{
+			position[]={26852.535,21.302229,24689.689};
+			name="Service_Truck_5";
+			text="Service_Truck_5";
+			type="Empty";
+			colorName="ColorYellow";
+		};
+		class Item189
+		{
+			position[]={21026.555,24.087889,7235.8232};
+			name="Service_Truck_6";
+			text="Service_Truck_6";
+			type="Empty";
+			colorName="ColorYellow";
+		};
+		class Item190
+		{
+			position[]={20915.318,27.789042,6905.6934};
+			name="Sell_Truck_1";
+			text="Sell_Truck_1";
+			type="Empty";
+			colorName="ColorGreen";
+		};
+		class Item191
+		{
+			position[]={16908.211,11.658366,13115.29};
+			name="Sell_Truck_2";
+			text="Sell_Truck_2";
+			type="Empty";
+			colorName="ColorGreen";
+		};
+		class Item192
+		{
+			position[]={22848.402,6.5988035,17190.756};
+			name="Sell_Truck_3";
+			text="Sell_Truck_3";
+			type="Empty";
+			colorName="ColorGreen";
+		};
+		class Item193
+		{
+			position[]={25755.301,29.199451,21718.846};
+			name="Sell_Truck_4";
+			text="Sell_Truck_4";
+			type="Empty";
+			colorName="ColorGreen";
+		};
+		class Item194
+		{
+			position[]={15361.935,18.055161,16813.012};
+			name="Sell_Truck_5";
+			text="Sell_Truck_5";
+			type="Empty";
+			colorName="ColorGreen";
+		};
+		class Item195
+		{
+			position[]={9519.416,127.72031,15132.323};
+			name="Sell_Truck_7";
+			text="Sell_Truck_7";
+			type="Empty";
+			colorName="ColorGreen";
+		};
+		class Item196
+		{
+			position[]={3726.1924,27.157013,12209.027};
+			name="Sell_Truck_8";
+			text="Sell_Truck_8";
+			type="Empty";
+			colorName="ColorGreen";
+		};
+		class Item197
+		{
+			position[]={5163.3721,240.01198,21032.232};
+			name="Sell_Truck_9";
+			text="Sell_Truck_9";
+			type="Empty";
+			colorName="ColorGreen";
 		};
 	};
 };

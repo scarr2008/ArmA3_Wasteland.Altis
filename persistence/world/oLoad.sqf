@@ -174,6 +174,11 @@ if (!isNil "_exists" && {_exists}) then
 
 					if (_staticWeaponSavingOn && {_class call _isStaticWeapon}) then
 					{
+						//AddAi to static weapon
+						if (getNumber(configFile >> "CfgVehicles" >> _class >> "isUav") > 0) then{
+							createVehicleCrew _obj;
+						};
+						
 						_turretMags = [_fileName, _objName, "TurretMagazines", "ARRAY"] call PDB_read; // iniDB_read
 
 						if (!isNil "_turretMags") then

@@ -25,14 +25,14 @@ _isSaveable =
 
 	{
 		_obj = _x;
-		if (_index > 0) then { _obj = _x select 1 };
+		if (_index > 1) then { _obj = _x select 1 };
 
 		if (!(_obj isKindOf "ReammoBox_F") && {!(_obj call _isSaveable)}) then
 		{
 			_saveableObjects pushBack _obj;
 		};
 	} forEach _x;
-} forEach [objectList, call genObjectsArray];
+} forEach [objectList, minesList, call genObjectsArray];
 
 // If file doesn't exist, create Info section at the top
 if !(_fileName call PDB_exists) then // iniDB_exists
@@ -72,7 +72,8 @@ while {true} do
 				    (_boxSavingOn && {_class call _isBox}) ||
 					(_staticWeaponSavingOn && {_class call _isStaticWeapon})} ||
 			   {_warchestSavingOn && {_obj call _isWarchest}} ||
-			   {_beaconSavingOn && {_obj call _isBeacon}}) then
+			   {_beaconSavingOn && {_obj call _isBeacon}} ||
+			   {_mineSavingOn && {_obj call _isMine}}) then
 			{
 				_netId = netId _obj;
 				_pos = ASLtoATL getPosWorld _obj;
@@ -133,6 +134,18 @@ while {true} do
 						_variables pushBack ["groupOnly", _obj getVariable ["groupOnly", false]];
 						_variables pushBack ["ownerName", toArray (_obj getVariable ["ownerName", "[Beacon]"])];
 					};
+                    case (_obj call _isMine):
+                    {
+                        _mineVisibility = [];
+                        {
+                          if (_obj mineDetectedBy _x) then {
+                            _mineVisibility pushBack str(_x);
+                          }
+                        } forEach [EAST,WEST,INDEPENDENT];
+                        
+                        _variables pushBack ["a3w_mine", (_obj getVariable ["a3w_mine", ""])];  
+                        _variables pushBack ["mineVisibility", _mineVisibility];
+                    };
 				};
 
 				_r3fSide = _obj getVariable "R3F_Side";

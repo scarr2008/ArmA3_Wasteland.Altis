@@ -10,11 +10,26 @@ _staticWeaponSavingOn = ["A3W_staticWeaponSaving"] call isConfigOn;
 _warchestSavingOn = ["A3W_warchestSaving"] call isConfigOn;
 _warchestMoneySavingOn = ["A3W_warchestMoneySaving"] call isConfigOn;
 _beaconSavingOn = ["A3W_spawnBeaconSaving"] call isConfigOn;
+_mineSavingOn  = ["A3W_mineSaving"] call isConfigOn;
 
 _isBox = { _this isKindOf "ReammoBox_F" };
 _isStaticWeapon = { _this isKindOf "StaticWeapon" };
 _isWarchest = { _this getVariable ["a3w_warchest", false] && {(_this getVariable ["side", sideUnknown]) in [WEST,EAST]} };
 _isBeacon = { _this getVariable ["a3w_spawnBeacon", false] };
+_isMine  = {
+    if (typeName _this == typeName objNull) then {
+        _class = typeOf _this;
+    }else{
+        _class = _this;
+    };
+    
+    if (isNil "_class") exitWith {false};
+    if (_class in minesList) then {
+        (true)
+    }else{
+        (false)
+    };
+};
 
 _hasInventory =
 {
@@ -26,6 +41,16 @@ _hasInventory =
 	{getNumber (_vehCfg >> "transportMaxWeapons") > 0 ||
 	 getNumber (_vehCfg >> "transportMaxMagazines") > 0 ||
 	 getNumber (_vehCfg >> "transportMaxBackpacks") > 0})
+};
+
+_mineAmmo2Vehicle = {
+
+    _class = _this;
+    
+    _class = (([_class, "_"] call BIS_fnc_splitString) select 0);
+
+    //hopefully after splitting, and taking the first part, we have the actual vehicle class name
+    (_class)
 };
 
 _fileName = "Objects" call PDB_objectFileName;

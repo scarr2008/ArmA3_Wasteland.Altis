@@ -114,6 +114,15 @@ switchMoveGlobal = [_clientFunc, "switchMoveGlobal.sqf"] call mf_compile;
 vehicleDammagedEvent = [_serverFunc, "vehicleDammagedEvent.sqf"] call mf_compile;
 vehicleEngineEvent = [_serverFunc, "vehicleEngineEvent.sqf"] call mf_compile;
 vehicleHandleDamage = [_serverFunc, "vehicleHandleDamage.sqf"] call mf_compile;
+A3W_fnc_setVectorUpAndDir = {
+  private["_left", "_right"];
+  _left = _this select 0;
+  _right = _this select 1;
+  if (isNil "_left" || {typeName _left != typeName objNull || {isNull _left}}) exitWith {};
+  if (isNil "_right" || {typeName _right != typeName []}) exitWith {};
+
+  _left setVectorDirAndUp _right;
+} call mf_compile;
 
 "pvar_switchMoveGlobal" addPublicVariableEventHandler { ((_this select 1) select 0) switchMove ((_this select 1) select 1) };
 "pvar_detachTowedObject" addPublicVariableEventHandler { (_this select 1) spawn detachTowedObject };

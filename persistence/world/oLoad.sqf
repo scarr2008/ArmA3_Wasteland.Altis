@@ -27,6 +27,7 @@ _isWarchestEntry = { [_variables, "a3w_warchest", false] call fn_getFromPairs };
 _isBeaconEntry = { [_variables, "a3w_spawnBeacon", false] call fn_getFromPairs };
 
 _maxLifetime = ["A3W_objectLifetime", 0] call getPublicVar;
+_maxMineLifetime = ["A3W_mineLifetime", 0] call getPublicVar;
 
 _exists = _fileName call PDB_exists; // iniDB_exists
 _objectsCount = 0;
@@ -47,7 +48,7 @@ if (!isNil "_exists" && {_exists}) then
 			_pos = [_fileName, _objName, "Position", "ARRAY"] call PDB_read; // iniDB_read
 			_hoursAlive = [_fileName, _objName, "HoursAlive", "NUMBER"] call PDB_read; // iniDB_read
 
-			if (!isNil "_class" && !isNil "_pos" && {_maxLifetime <= 0 || {_hoursAlive < _maxLifetime}}) then
+			if (!isNil "_class" && !isNil "_pos" && {!(_class call _isMine) && {_maxLifetime <= 0 || {_hoursAlive < _maxLifetime}}}) then 
 			{
 				_variables = [_fileName, _objName, "Variables", "ARRAY"] call PDB_read; // iniDB_read
 
@@ -69,6 +70,7 @@ if (!isNil "_exists" && {_exists}) then
 					{ if (typeName _x == "STRING") then { _pos set [_forEachIndex, parseNumber _x] } } forEach _pos;
 
 					_obj = createVehicle [_class, _pos, [], 0, "CAN_COLLIDE"];
+                    _obj allowDamage false; //set damage to false immediately to avoid taking fall damage
 					_obj setPosWorld ATLtoASL _pos;
 
 					if (!isNil "_dir") then
@@ -197,6 +199,54 @@ if (!isNil "_exists" && {_exists}) then
 					if (!isNil "_repairCargo") then { _obj setRepairCargo _repairCargo };
 				};
 			};
+                       
+            if (!isNil "_class" && !isNil "_pos" && {_class call _isMine && {_maxMineLifetime <= 0 || {_hoursAlive < _maxMineLifetime}}}) then 
+            {
+				_variables = [_fileName, _objName, "Variables", "ARRAY"] call PDB_read; // iniDB_read
+
+				_allowed = switch (true) do
+				{
+                    case (_class call _isMine):         { _mineSavingOn };
+				};
+
+				if (_allowed) then
+				{
+					_dir = [_fileName, _objName, "Direction", "ARRAY"] call PDB_read; // iniDB_read
+					_damage = [_fileName, _objName, "Damage", "NUMBER"] call PDB_read; // iniDB_read
+					_allowDamage = [_fileName, _objName, "AllowDamage", "NUMBER"] call PDB_read; // iniDB_read
+
+					{ if (typeName _x == "STRING") then { _pos set [_forEachIndex, parseNumber _x] } } forEach _pos;
+                    
+                    _class = _class call _mineAmmo2Vehicle;
+                    
+                    _obj = createMine[_class, _pos, [], 0];
+                    
+					_obj setPosWorld ATLtoASL _pos;
+                    
+                    if (!isNil "_dir") then {
+                      //special handling for mines, because setVectorUpAndDir has local effects only ... on mines
+                      [[_obj,_dir], "A3W_fnc_setVectorUpAndDir",true, true] call BIS_fnc_MP;
+                    };
+                    
+					{
+						_var = _x select 0;
+						_value = _x select 1;
+
+						switch (_var) do
+						{
+                            case "mineVisibility":
+                            {
+                                {
+                                  _side = _x call _strToSide;
+                                  _side revealMine _obj;
+                                } forEach _value;
+                            };
+						};
+
+						_obj setVariable [_var, _value, true];
+					} forEach _variables;
+                };
+            };
 		};
 	};
 

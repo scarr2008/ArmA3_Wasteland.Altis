@@ -67,7 +67,7 @@ if (isServer) then
 [] execVM "addons\JumpMF\init.sqf";
 [] execVM "addons\earplug\earplugInit.sqf";
 [] execVM "addons\atm\bank_init.sqf";
-//[] execVM "addons\outlw_magRepack\MagRepack_init_sv.sqf";
+[] execVM "addons\outlw_magRepack\MagRepack_init_sv.sqf";
 //[] execVM "addons\Explosives-To-Vehicle\init.sqf";
 [] execVM "addons\JTS_PM\Functions.sqf";
 //[] execVM "addons\scripts\zlt_fastrope.sqf";

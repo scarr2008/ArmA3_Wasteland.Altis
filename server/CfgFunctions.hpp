@@ -9,4 +9,5 @@ class ServerDir
 	class generateKey {file = "server\functions\network\generateKey.sqf";};
 	class setupStoreNPC {file = "server\functions\setupStoreNPC.sqf";};
 	class setupMissionObject {file = "server\functions\setupMissionObject.sqf";};
+    class setupSellTruck {file = "server\functions\setupSellTruck.sqf";};
 };

@@ -27,7 +27,7 @@ _setupVars =
 		// Easy
 		[
 			"Small Money Shipment", // Marker text
-			25000, // Money
+			100000, // Money
 			[
 				[ // NATO convoy
 					["B_MRAP_01_hmg_F", "B_MRAP_01_gmg_F"], // Veh 1
@@ -46,7 +46,7 @@ _setupVars =
 		// Medium
 		[
 			"Medium Money Shipment", // Marker text
-			50000, // Money
+			200000, // Money
 			[
 				[ // NATO convoy
 					["B_MRAP_01_hmg_F", "B_MRAP_01_gmg_F"], // Veh 1
@@ -68,7 +68,7 @@ _setupVars =
 		// Hard
 		[
 			"Large Money Shipment", // Marker text
-			75000, // Money
+			370000, // Money
 			[
 				[ // NATO convoy
 					["B_APC_Wheeled_01_cannon_F", "B_APC_Tracked_01_rcws_F", "B_APC_Tracked_01_AA_F"], // Veh 1
@@ -90,7 +90,7 @@ _setupVars =
 		// Extreme
 		[
 			"Heavy Money Shipment", // Marker text
-			150000, // Money
+			500000, // Money
 			[
 				[ // NATO convoy
 					["B_APC_Wheeled_01_cannon_F", "B_APC_Tracked_01_rcws_F", "B_APC_Tracked_01_AA_F", "B_MBT_01_cannon_F", "B_MBT_01_TUSK_F"], // Veh 1

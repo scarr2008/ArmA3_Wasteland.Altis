@@ -165,7 +165,7 @@ if (_key != "" && isPlayer _player && {_isGenStore || _isGunStore || _isVehStore
 				_marker = _this select 2;
 
 				//_isDamageable = !(_object isKindOf "ReammoBox_F"); //False if NOT Box
-                _isDamageable = ({_object isKindOf _x} count ["AllVehicles"] > 0); //True if IN list
+				_isDamageable = ({_object isKindOf _x} count ["AllVehicles"] > 0); //True if IN list
 
 				[_object, false] call vehicleSetup;
 				_object allowDamage _isDamageable;

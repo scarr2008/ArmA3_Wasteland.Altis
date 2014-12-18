@@ -60,20 +60,20 @@ while {true} do
 	_oldObjCount = [_fileName, "Info", "ObjCount", "NUMBER"] call PDB_read; // iniDB_read
 	_objCount = 0;
 
+	//Saving usual objects
 	{
 		_obj = _x;
 
-		if (alive _obj) then
+		if ((alive _obj) && {!(_obj call _isMine)}) then
 		{
 			_class = typeOf _obj;
 
 			if (_obj getVariable ["objectLocked", false] &&
-			       {(_baseSavingOn && {_class call _isSaveable}) ||
-				    (_boxSavingOn && {_class call _isBox}) ||
+					{(_baseSavingOn && {_class call _isSaveable}) ||
+					(_boxSavingOn && {_class call _isBox}) ||
 					(_staticWeaponSavingOn && {_class call _isStaticWeapon})} ||
-			   {_warchestSavingOn && {_obj call _isWarchest}} ||
-			   {_beaconSavingOn && {_obj call _isBeacon}} ||
-			   {_mineSavingOn && {_obj call _isMine}}) then
+				{_warchestSavingOn && {_obj call _isWarchest}} ||
+				{_beaconSavingOn && {_obj call _isBeacon}}) then
 			{
 				_netId = netId _obj;
 				_pos = ASLtoATL getPosWorld _obj;
@@ -134,18 +134,6 @@ while {true} do
 						_variables pushBack ["groupOnly", _obj getVariable ["groupOnly", false]];
 						_variables pushBack ["ownerName", toArray (_obj getVariable ["ownerName", "[Beacon]"])];
 					};
-                    case (_obj call _isMine):
-                    {
-                        _mineVisibility = [];
-                        {
-                          if (_obj mineDetectedBy _x) then {
-                            _mineVisibility pushBack str(_x);
-                          }
-                        } forEach [EAST,WEST,INDEPENDENT];
-                        
-                        _variables pushBack ["a3w_mine", (_obj getVariable ["a3w_mine", ""])];  
-                        _variables pushBack ["mineVisibility", _mineVisibility];
-                    };
 				};
 
 				_r3fSide = _obj getVariable "R3F_Side";
@@ -219,6 +207,75 @@ while {true} do
 			};
 		};
 	} forEach allMissionObjects "All";
+	
+	//Saving mines
+	{
+		_obj = _x;
+		
+		if ((alive _obj) && {_obj call _isMine}) then
+		{
+			_class = typeOf _obj;
+			
+			if (_mineSavingOn) then
+			{
+				_netId = netId _obj;
+				_pos = ASLtoATL getPosWorld _obj;
+				{ _pos set [_forEachIndex, _x call fn_numToStr] } forEach _pos;
+				_dir = [vectorDir _obj, vectorUp _obj];
+				_damage = damage _obj;
+				_allowDamage = if (_obj getVariable ["allowDamage", false]) then { 1 } else { 0 };
+					
+				_spawningTime = missionNamespace getVariable format["%1_spawningTime",_netId];	
+
+				if (isNil "_spawningTime") then
+				{
+					_spawningTime  = diag_tickTime;
+					missionNamespace setVariable [format["%1_spawningTime", _netId], _spawningTime];
+				};
+
+				_hoursAlive = (missionNamespace getVariable [format["%1_hoursAlive", _netId],0])+ ((diag_tickTime - _spawningTime) / 3600);
+
+				_variables = [];
+
+				switch (true) do
+				{
+					case (_obj call _isMine):
+					{
+						_mineVisibility = [];
+						{
+						  if (_obj mineDetectedBy _x) then {
+							_mineVisibility pushBack str(_x);
+						  }
+						} forEach [EAST,WEST,INDEPENDENT];
+						
+						_variables pushBack ["a3w_mine", (_obj getVariable ["a3w_mine", ""])];  
+						_variables pushBack ["mineVisibility", _mineVisibility];
+					};
+				};
+
+				// Save data
+
+				_objCount = _objCount + 1;
+				_objName = format ["Obj%1", _objCount];
+
+				{
+					[_fileName, _objName, _x select 0, _x select 1, false] call PDB_write; // iniDB_write
+				}
+				forEach
+				[
+					["Class", _class],
+					["Position", _pos],
+					["Direction", _dir],
+					["HoursAlive", _hoursAlive],
+					["Damage", _damage],
+					["AllowDamage", _allowDamage],
+					["Variables", _variables]
+				];
+
+				sleep 0.01;
+			};
+		};
+	} forEach allMines;
 
 	[_fileName, "Info", "ObjCount", _objCount] call PDB_write; // iniDB_write
 
@@ -270,7 +327,7 @@ while {true} do
 				_missionVehicle = (_veh getVariable ["A3W_missionVehicle", false] && !(_veh getVariable ["R3F_LOG_disabled", false]));
 
 				if ((_purchasedVehicle && _purchasedVehicleSaving) ||
-				    (_missionVehicle && _missionVehicleSaving)) then
+					(_missionVehicle && _missionVehicleSaving)) then
 				{
 					_pos = ASLtoATL getPosWorld _veh;
 					{ _pos set [_forEachIndex, _x call fn_numToStr] } forEach _pos;

@@ -222,6 +222,14 @@ if (!isNil "_exists" && {_exists}) then
                     _obj = createMine[_class, _pos, [], 0];
                     
 					_obj setPosWorld ATLtoASL _pos;
+					
+					//restore hours alive. At missionNamespace
+					_netId = netId _obj;
+					_hours_alive = missionNamespace getVariable format["%1_hoursAlive", _netId];
+					missionNamespace setVariable [format["%1_spawningTime",_netId], diag_tickTime];
+					if (!isNil "_hours_alive") then {
+						missionNamespace setVariable [format["%1_hoursAlive",_netId], 0];
+					};
                     
                     if (!isNil "_dir") then {
                       //special handling for mines, because setVectorUpAndDir has local effects only ... on mines
@@ -243,7 +251,7 @@ if (!isNil "_exists" && {_exists}) then
                             };
 						};
 
-						_obj setVariable [_var, _value, true];
+						//_obj setVariable [_var, _value, true]; //Just useless for mines
 					} forEach _variables;
                 };
             };

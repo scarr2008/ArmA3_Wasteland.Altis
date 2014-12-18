@@ -216,8 +216,8 @@ minesList =
     "APERSBoundingMine_Range_Ammo",
     "APERSMine_Range_Ammo",
     "ATMine_Range_Ammo",
-    "ClaymoreDirectionalMine_Remote_Ammo",
-    "SLAMDirectionalMine_Wire_Ammo",
-    "DemoCharge_Remote_Ammo",
-    "SatchelCharge_Remote_Ammo"
+    //"ClaymoreDirectionalMine_Remote_Ammo",
+    //"DemoCharge_Remote_Ammo",
+    //"SatchelCharge_Remote_Ammo",
+	"SLAMDirectionalMine_Wire_Ammo"
 ];

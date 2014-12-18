@@ -17,6 +17,8 @@ _isStaticWeapon = { _this isKindOf "StaticWeapon" };
 _isWarchest = { _this getVariable ["a3w_warchest", false] && {(_this getVariable ["side", sideUnknown]) in [WEST,EAST]} };
 _isBeacon = { _this getVariable ["a3w_spawnBeacon", false] };
 _isMine  = {
+	_class = nil;
+
     if (typeName _this == typeName objNull) then {
         _class = typeOf _this;
     }else{

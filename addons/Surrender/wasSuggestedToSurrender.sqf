@@ -13,7 +13,7 @@ switch (true) do {
 	case (!isPlayer player): {}; // Not a player
 	case (!alive player): {}; // Is dead
 	case (!(vehicle player == player)): {}; //Is in vehicle
-	case (side player in [CIV]): {}; //Is injured
+	case (side player in [CIVILIAN]): {}; //Is injured
 	case (player getVariable ["sur_isSurrendering",false]): {}; //Had already surrendered
 	case (player getVariable ["sur_gotSuggestion",false]): {_result=true};
 };
@@ -24,13 +24,13 @@ if (_result) then {
 
 	[] spawn {
 		sleep WAITFOR;
-		player setVariable ["sur_isSurrendering",false,true]
+		player setVariable ["sur_isSurrendering",false,true];
 		player setVariable ["sur_gotSuggestion",false,true];
 		player setVariable ["sur_suggestorName",nil,true];
 	};
 }else{
-		player setVariable ["sur_isSurrendering", false, true];
-		player setVariable ["sur_gotSuggestion",false,true];
-		player setVariable ["sur_suggestorName",nil,true];
+	player setVariable ["sur_isSurrendering", false, true];
+	player setVariable ["sur_gotSuggestion",false,true];
+	player setVariable ["sur_suggestorName",nil,true];
 };
 (_result);

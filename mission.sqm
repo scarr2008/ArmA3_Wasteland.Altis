@@ -2326,7 +2326,7 @@ class Mission
 			vehicle="Land_Atm_01_F";
 			skill=0.60000002;
 			text="ATM";
-			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+			init="this setVariable [""isATM"",true,true];";
 		};
 		class Item25
 		{
@@ -2337,7 +2337,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Atm_02_F";
 			skill=0.60000002;
-			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+			init="this setVariable [""isATM"",true,true];";
 		};
 		class Item26
 		{
@@ -2347,7 +2347,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Atm_02_F";
 			skill=0.60000002;
-			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+			init="this setVariable [""isATM"",true,true];";
 		};
 		class Item27
 		{
@@ -2358,7 +2358,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Atm_02_F";
 			skill=0.60000002;
-			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+			init="this setVariable [""isATM"",true,true];";
 		};
 		class Item28
 		{
@@ -2369,7 +2369,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Atm_02_F";
 			skill=0.60000002;
-			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+			init="this setVariable [""isATM"",true,true];";
 		};
 		class Item29
 		{
@@ -2379,7 +2379,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Atm_02_F";
 			skill=0.60000002;
-			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+			init="this setVariable [""isATM"",true,true];";
 		};
 		class Item30
 		{

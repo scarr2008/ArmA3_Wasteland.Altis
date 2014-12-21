@@ -13,7 +13,7 @@ if ({ _target isKindOf _x } count ['Air','Tank','Motorcycle','Car','Ship'] > 0) 
 	!isNull _target && (alive _target) && 
 	!((locked _target)==2) && (count crew _target == 0) && 
 	!(_target getVariable ['R3F_LOG_disabled', false]) && 
-	(player distance _target) < 5;
+	(player distance _target) < 7;
 }else{
 	false;
 };

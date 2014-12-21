@@ -2,7 +2,7 @@
 //@file Name: vehiclesave.sqf
 //@file Author: MercyfulFate edited by Gigatek && BadVolt
 //@file Created: 06/09/2014
-//@file Description: Save the nearest Vehicle
+//@file Description: Lock vehicle
 
 #define DURATION 5
 #define ANIMATION "AinvPknlMstpSlayWrflDnon_medic"
@@ -13,8 +13,6 @@
 #define ERR_CANCELLED "Locking Cancelled!"
 
 private ["_vehicle", "_checks", "_success", "_nearvehicle"];
-//_nearvehicle = nearestObjects [player, ['Air','Tank','Motorcycle','Car','Ship'], 7];
-//_vehicle = _nearvehicle select 0;
 _vehicle = cursorTarget;
 
 _checks = {
@@ -26,7 +24,7 @@ _checks = {
     switch (true) do {
         case (!alive player): {}; // player is dead, no need for a notification
         case (vehicle player != player): {_text = ERR_IN_vehicle};
-        case (player distance _vehicle > (sizeOf typeOf _vehicle / 3) max 5): {_text = ERR_TOO_FAR_AWAY};
+        case (player distance _vehicle > (sizeOf typeOf _vehicle / 2) max 7): {_text = ERR_TOO_FAR_AWAY};
         case (!alive _vehicle): {_error = ERR_DESTROYED};
 		case ({(typeOf _vehicle) isKindOf _x } count ['Air','Tank','Motorcycle','Car','Ship'] == 0 ): {_text = ERR_NOT_VEHICLE};
         case (doCancelAction): {_text = ERR_CANCELLED; doCancelAction = false;};

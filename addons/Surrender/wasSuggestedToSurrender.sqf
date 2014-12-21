@@ -8,14 +8,14 @@
 #define WAITFOR 15
 
 _result=false;
-_target = _this select 0; //cursorTarget
 
 switch (true) do {
-	case (!isPlayer _target): {}; // Not a player
-	case (!alive _target): {}; // Is dead
-	case (!(vehicle _target == _target)): {}; //Is in vehicle
-	case (_target getVariable ["sur_isSurrendering",false]): {}; //Had already surrendered
-	case (_target getVariable ["sur_gotSuggestion",false]): {_result=true};
+	case (!isPlayer player): {}; // Not a player
+	case (!alive player): {}; // Is dead
+	case (!(vehicle player == player)): {}; //Is in vehicle
+	case (side player in [CIV]): {}; //Is injured
+	case (player getVariable ["sur_isSurrendering",false]): {}; //Had already surrendered
+	case (player getVariable ["sur_gotSuggestion",false]): {_result=true};
 };
 
 if (_result) then {
@@ -24,10 +24,13 @@ if (_result) then {
 
 	[] spawn {
 		sleep WAITFOR;
-		if !(player getVariable ["sur_isSurrendering",false]) then {
-			player setVariable ["sur_gotSuggestion",false,true];
-			player setVariable ["sur_suggestorName",nil,true];
-		};
+		player setVariable ["sur_isSurrendering",false,true]
+		player setVariable ["sur_gotSuggestion",false,true];
+		player setVariable ["sur_suggestorName",nil,true];
 	};
+}else{
+		player setVariable ["sur_isSurrendering", false, true];
+		player setVariable ["sur_gotSuggestion",false,true];
+		player setVariable ["sur_suggestorName",nil,true];
 };
 (_result);
